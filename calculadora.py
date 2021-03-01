@@ -1,12 +1,17 @@
 from tkinter import *
 import time
+import math
 
 root=Tk()
 root.title("Calculadora")
-root.iconbitmap("msh.ico")
+root.iconbitmap("calculadora.ico")
+root.resizable(width=False, height=False)
+root.config(bg="lightgrey")
 
 calFrame = Frame(root)
+calFrame.config(bg="lightgrey")
 calFrame.pack(padx=2, pady=4)
+
 
 # Variables globales
 ultimaTecla=""
@@ -18,7 +23,7 @@ enVisor.set("")
 # Pantalla
 visor = Label(calFrame, textvariable=enVisor)
 visor.grid(row=0, column=0, padx=2, pady=2, columnspan=5)
-visor.config(bg="lightgrey",fg="grey", font=("Arial",8), anchor="e", width=40)
+visor.config(bg="grey",fg="white", font=("Arial",8), anchor="e", width=40)
 
 pantalla = Label(calFrame, textvariable=enPantalla)
 pantalla.grid(row=1,column=0, padx=2, pady=2, columnspan=5)
@@ -113,9 +118,9 @@ def botonPulsado(tecla):
             strPantalla = strPantalla[:-1]
         strVisor+= strPantalla  + tecla
         if tecla == "=":
-            strAux=strPantalla.replace(".","")
+            strAux=strVisor.replace(".","")
             strAux=strAux.replace(",",".")
-            strAux=str(eval(strVisor[:-1]))
+            strAux=str(eval(strAux[:-1]))
             strAux=strAux.replace(".",",")
             strVisor+= strAux
             strPantalla=strAux
